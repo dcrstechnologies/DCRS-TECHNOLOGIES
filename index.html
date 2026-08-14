@@ -73,9 +73,6 @@ button{
     transform 1.15s cubic-bezier(.77,0,.18,1);
 }
 
-
-/* Glow */
-
 .loader-glow{
   position:absolute;
 
@@ -111,9 +108,6 @@ button{
 
 }
 
-
-/* Loader content */
-
 .loader-inner{
   position:relative;
   z-index:2;
@@ -126,9 +120,6 @@ button{
     loaderEnter 1.2s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-
-/* Logo */
-
 .loader-logo-wrap{
   position:relative;
 
@@ -138,7 +129,6 @@ button{
 
   overflow:hidden;
 }
-
 
 .loader-logo-img{
   display:block;
@@ -160,7 +150,6 @@ button{
   animation:
     logoReveal 1.4s cubic-bezier(.16,1,.3,1) .15s forwards;
 }
-
 
 @keyframes logoReveal{
 
@@ -185,9 +174,6 @@ button{
   }
 
 }
-
-
-/* Logo light sweep */
 
 .loader-logo-wrap::after{
   content:"";
@@ -214,7 +200,6 @@ button{
     logoSweep 1.1s cubic-bezier(.77,0,.18,1) .65s forwards;
 }
 
-
 @keyframes logoSweep{
 
   from{
@@ -226,9 +211,6 @@ button{
   }
 
 }
-
-
-/* Subtitle */
 
 .loader-sub{
   margin-top:25px;
@@ -247,7 +229,6 @@ button{
     loaderSub 1s ease .85s forwards;
 }
 
-
 @keyframes loaderSub{
 
   from{
@@ -261,9 +242,6 @@ button{
   }
 
 }
-
-
-/* Loading bar */
 
 .loader-bar{
   width:180px;
@@ -281,7 +259,6 @@ button{
     loaderBarIn .5s ease .9s forwards;
 }
 
-
 .loader-bar i{
   display:block;
 
@@ -294,7 +271,6 @@ button{
     load 1.45s cubic-bezier(.77,0,.18,1) 1s forwards;
 }
 
-
 @keyframes loaderBarIn{
 
   to{
@@ -302,7 +278,6 @@ button{
   }
 
 }
-
 
 @keyframes load{
 
@@ -315,9 +290,6 @@ button{
   }
 
 }
-
-
-/* Loader entrance */
 
 @keyframes loaderEnter{
 
@@ -333,15 +305,9 @@ button{
 
 }
 
-
-/* Loader exit */
-
 #loader.exit{
   transform:translateY(-100%);
 }
-
-
-/* Lime wipe */
 
 #loader.exit::after{
   content:"";
@@ -359,7 +325,6 @@ button{
   animation:
     loaderFlash .9s cubic-bezier(.77,0,.18,1) forwards;
 }
-
 
 @keyframes loaderFlash{
 
@@ -436,6 +401,8 @@ nav{
   display:flex;
   gap:30px;
 
+  align-items:center;
+
   font-size:12px;
 
   text-transform:uppercase;
@@ -447,7 +414,7 @@ nav a{
   position:relative;
 }
 
-nav a:after{
+nav a:not(.order-btn):after{
   content:"";
 
   position:absolute;
@@ -463,8 +430,86 @@ nav a:after{
   transition:.3s;
 }
 
-nav a:hover:after{
+nav a:not(.order-btn):hover:after{
   width:100%;
+}
+
+
+/* =====================================================
+   ORDER BUTTON
+===================================================== */
+
+.order-btn{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  background:#111;
+
+  color:#fff !important;
+
+  padding:11px 17px;
+
+  border-radius:999px;
+
+  font-size:10px;
+
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
+
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+.order-btn:hover{
+  background:var(--accent);
+
+  color:#111 !important;
+
+  transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   HEADER ACTIONS
+===================================================== */
+
+.header-actions{
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+.mobile-order{
+  display:none;
+
+  background:#111;
+
+  color:#fff;
+
+  padding:9px 14px;
+
+  border-radius:999px;
+
+  font-size:9px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.12em;
+
+  transition:.3s;
+}
+
+.mobile-order:hover{
+  background:var(--accent);
+
+  color:#111;
 }
 
 .menu{
@@ -475,6 +520,8 @@ nav a:hover:after{
   background:none;
 
   font-size:25px;
+
+  cursor:pointer;
 }
 
 
@@ -933,9 +980,6 @@ nav a:hover:after{
   position:relative;
 }
 
-
-/* Team images */
-
 .avatar{
   width:100%;
 
@@ -1342,6 +1386,10 @@ footer{
   text-transform:uppercase;
 
   color:#777;
+
+  gap:20px;
+
+  flex-wrap:wrap;
 }
 
 footer a{
@@ -1381,6 +1429,10 @@ footer a{
 
   .menu{
     display:block;
+  }
+
+  .mobile-order{
+    display:inline-flex;
   }
 
   .hero{
@@ -1444,6 +1496,20 @@ footer a{
 
   .brand{
     font-size:21px;
+  }
+
+  .header-actions{
+    gap:7px;
+  }
+
+  .mobile-order{
+    padding:8px 12px;
+
+    font-size:8px;
+  }
+
+  .menu{
+    font-size:23px;
   }
 
   .hero{
@@ -1547,6 +1613,8 @@ footer a{
   footer span,
   footer a{
     display:block;
+
+    margin-bottom:4px;
   }
 
   /* Mobile loader */
@@ -1679,14 +1747,37 @@ footer a{
       Contact
     </a>
 
+    <!-- ORDER BUTTON -->
+
+    <a
+      class="order-btn"
+      href="order.html"
+    >
+      Order ↗
+    </a>
+
   </nav>
 
-  <button
-    class="menu"
-    aria-label="Menu"
-  >
-    ☰
-  </button>
+
+  <!-- MOBILE HEADER -->
+
+  <div class="header-actions">
+
+    <a
+      class="mobile-order"
+      href="order.html"
+    >
+      Order ↗
+    </a>
+
+    <button
+      class="menu"
+      aria-label="Menu"
+    >
+      ☰
+    </button>
+
+  </div>
 
 </header>
 
@@ -1790,7 +1881,6 @@ footer a{
 
   <div class="story">
 
-
     <div class="story-visual reveal">
 
       <img
@@ -1879,8 +1969,6 @@ footer a{
   <div class="team">
 
 
-    <!-- CHRISTY -->
-
     <article class="member reveal">
 
       <div class="member-no">
@@ -1919,8 +2007,6 @@ footer a{
 
     </article>
 
-
-    <!-- SREE NANDAN -->
 
     <article class="member reveal">
 
@@ -1962,8 +2048,6 @@ footer a{
     </article>
 
 
-    <!-- ABINEL -->
-
     <article class="member reveal">
 
       <div class="member-no">
@@ -2001,8 +2085,6 @@ footer a{
 
     </article>
 
-
-    <!-- DANIEL -->
 
     <article class="member reveal">
 
@@ -2396,8 +2478,18 @@ footer a{
 
     <div class="contact-row">
 
+      <!-- ORDER BUTTON -->
+
       <a
         class="contact"
+        href="order.html"
+      >
+        Order / Work With Us ↗
+      </a>
+
+
+      <a
+        class="contact secondary"
         href="https://www.instagram.com/dcrs_productions/"
         target="_blank"
         rel="noopener noreferrer"
@@ -2489,7 +2581,6 @@ window.addEventListener('load',()=>{
 });
 
 
-
 /* =====================================================
    SCROLL REVEAL
 ===================================================== */
@@ -2521,7 +2612,6 @@ const observer =
 document
   .querySelectorAll('.reveal')
   .forEach(el => observer.observe(el));
-
 
 
 /* =====================================================
