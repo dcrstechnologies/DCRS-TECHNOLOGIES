@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCRS Productions — Built From Nothing</title>
+<meta name="description" content="DCRS Productions — four young creators from Thrissur building music, films, photography, IoT, design and stories from the ground up.">
+<style>
+:root{
+  --ink:#111;
+  --muted:#666;
+  --paper:#f7f7f4;
+  --line:#d9d9d2;
+  --accent:#c9ff00;
+  --dark:#101010;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:var(--ink);color:var(--accent)}
+
+#loader{position:fixed;inset:0;background:#101010;color:#fff;z-index:10000;display:grid;place-items:center;transition:.8s cubic-bezier(.77,0,.18,1)}
+.loader-inner{text-align:center}
+.loader-logo{font-size:clamp(50px,10vw,140px);font-weight:900;letter-spacing:-.09em;line-height:.8}
+.loader-sub{margin-top:24px;letter-spacing:.25em;font-size:11px;text-transform:uppercase;color:#aaa}
+.loader-bar{width:180px;height:2px;background:#333;margin:28px auto 0;overflow:hidden}
+.loader-bar i{display:block;height:100%;background:var(--accent);animation:load 1.4s ease forwards}
+@keyframes load{from{width:0}to{width:100%}}
+
+.noise{position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+
+header{position:fixed;top:0;left:0;right:0;height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;z-index:900;background:rgba(247,247,244,.75);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.08)}
+.brand{font-weight:900;letter-spacing:-.06em;font-size:23px}
+.brand span{color:#777}
+nav{display:flex;gap:30px;font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+nav a{position:relative}
+nav a:after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:1px;background:#111;transition:.3s}
+nav a:hover:after{width:100%}
+.menu{display:none;border:0;background:none;font-size:25px}
+
+.hero{min-height:100vh;padding:150px 5vw 60px;display:grid;grid-template-columns:1.25fr .75fr;gap:4vw;align-items:end;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:55vw;height:55vw;border-radius:50%;right:-20vw;top:-15vw;background:var(--accent);filter:blur(1px);z-index:-1}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-size:clamp(74px,13vw,190px);line-height:.79;letter-spacing:-.095em;margin:0;max-width:1050px;font-weight:900}
+.hero h1 em{font-style:normal;display:block;-webkit-text-stroke:2px #111;color:transparent}
+.hero-copy{max-width:450px;margin-left:auto;padding-bottom:15px}
+.hero-copy p{font-size:19px;line-height:1.35;margin:0 0 28px}
+.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid #111;border-radius:99px;padding:13px 18px;font-size:11px;text-transform:uppercase;letter-spacing:.12em}
+.dot{width:7px;height:7px;background:var(--accent);border-radius:50%;display:inline-block}
+.scroll{position:absolute;bottom:28px;left:5vw;font-size:10px;letter-spacing:.18em;text-transform:uppercase;writing-mode:vertical-rl}
+
+.marquee{background:#111;color:#fff;overflow:hidden;white-space:nowrap;border-block:1px solid #111}
+.track{display:inline-flex;animation:marquee 22s linear infinite}
+.track span{font-size:clamp(34px,5vw,72px);font-weight:900;letter-spacing:-.06em;padding:13px 25px}
+.track b{color:var(--accent)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.section{padding:130px 5vw}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:flex-start;border-top:1px solid var(--line);padding-top:22px;margin-bottom:70px}
+.section-number{font-size:11px;letter-spacing:.15em}
+.section-title{font-size:clamp(48px,8vw,110px);line-height:.85;letter-spacing:-.08em;margin:0;max-width:900px}
+.section-intro{max-width:330px;font-size:16px;line-height:1.5;color:var(--muted)}
+
+.story{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center}
+.story-visual{aspect-ratio:1/1;position:relative;background:#171717;overflow:hidden;border:1px solid #222}.story-visual img{width:100%;height:100%;display:block;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1);filter:saturate(1.05) contrast(1.05)}.story-visual:hover img{transform:scale(1.06)}
+.story-visual:before{content:"";position:absolute;inset:8%;border:1px solid #444;display:grid;place-items:center;color:#eee;font-size:clamp(70px,12vw,160px);font-weight:900;letter-spacing:-.12em}
+.story-visual:after{content:"FROM NOTHING / TO SOMETHING";position:absolute;bottom:25px;left:25px;color:#aaa;font-size:10px;letter-spacing:.2em}
+.story-copy h3{font-size:clamp(34px,5vw,70px);line-height:.9;letter-spacing:-.07em;margin:0 0 25px}
+.story-copy p{font-size:18px;line-height:1.55;color:#555;max-width:560px}
+.big-stat{font-size:clamp(90px,15vw,210px);font-weight:900;letter-spacing:-.1em;line-height:.7;margin:60px 0 0}
+.big-stat small{font-size:12px;letter-spacing:.15em;display:block;line-height:1.2;margin-left:10px;color:#777}.founding-note{display:inline-block;margin-top:25px;padding:9px 13px;border:1px solid var(--line);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.member{min-height:430px;border:1px solid var(--line);padding:25px;display:flex;flex-direction:column;justify-content:space-between;transition:.5s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;background:#f7f7f4}
+.member:hover{transform:translateY(-12px);background:#111;color:#fff}
+.member:before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:var(--accent);right:-80px;top:-80px;transition:.5s}
+.member:hover:before{width:230px;height:230px}
+.member-no{font-size:11px;letter-spacing:.2em;position:relative}
+.avatar{height:180px;border:1px solid var(--line);display:grid;place-items:center;font-size:70px;font-weight:900;letter-spacing:-.1em;position:relative;overflow:hidden}
+.member:hover .avatar{border-color:#333}
+.member h3{font-size:27px;letter-spacing:-.06em;margin:20px 0 8px;position:relative}
+.role{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:#777;position:relative}
+.member:hover .role{color:#aaa}
+.member p{font-size:13px;line-height:1.5;color:#666;position:relative}
+.member:hover p{color:#aaa}
+
+.capabilities{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.cap{padding:40px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:230px;transition:.35s}
+.cap:hover{background:#111;color:#fff}
+.cap .num{font-size:11px;color:#999}
+.cap h3{font-size:34px;letter-spacing:-.06em;margin:55px 0 10px}
+.cap p{font-size:13px;color:#777;line-height:1.45;margin:0}
+.cap:hover p{color:#aaa}
+
+.timeline{position:relative;border-top:1px solid var(--line)}
+.event{display:grid;grid-template-columns:150px 1fr 160px;gap:30px;padding:35px 0;border-bottom:1px solid var(--line);align-items:center}
+.event-year{font-size:12px;letter-spacing:.15em}
+.event h3{font-size:clamp(28px,4vw,52px);letter-spacing:-.07em;margin:0}
+.event p{color:#777;margin:8px 0 0;font-size:14px}
+.event-tag{text-align:right;font-size:10px;text-transform:uppercase;letter-spacing:.15em}
+
+.future{background:#111;color:#fff;position:relative;overflow:hidden}
+.future:before{content:"2027";position:absolute;right:-4vw;top:-7vw;font-size:32vw;font-weight:900;letter-spacing:-.12em;color:#181818;line-height:1}
+.future .section-head{border-color:#333;position:relative}
+.future .section-intro{color:#888}
+.future .section-title{position:relative}
+.future-grid{display:grid;grid-template-columns:1fr 1fr;gap:7vw;position:relative}
+.future-card{border:1px solid #333;padding:45px;min-height:340px}
+.future-card h3{font-size:60px;letter-spacing:-.08em;line-height:.85;margin:90px 0 15px}
+.future-card p{color:#888;max-width:450px;line-height:1.5}
+
+.cta{text-align:center;padding:170px 5vw}
+.cta h2{font-size:clamp(70px,14vw,200px);line-height:.78;letter-spacing:-.1em;margin:0}
+.cta h2 span{display:block;-webkit-text-stroke:2px #111;color:transparent}
+.cta p{max-width:500px;margin:40px auto 28px;color:#666;line-height:1.5}
+.contact{display:inline-flex;align-items:center;gap:12px;background:#111;color:#fff;padding:18px 24px;border-radius:99px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;transition:.3s}
+.contact:hover{background:var(--accent);color:#111;transform:scale(1.04)}
+
+footer{padding:25px 5vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#777}
+footer a{color:#111}
+
+.reveal{opacity:0;transform:translateY(50px);transition:1s cubic-bezier(.2,.8,.2,1)}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:900px){
+  nav{display:none}.menu{display:block}
+  .hero{grid-template-columns:1fr;padding-top:130px}.hero-copy{margin:45px 0 0}.hero:before{width:80vw;height:80vw}
+  .story,.future-grid{grid-template-columns:1fr}.team{grid-template-columns:1fr 1fr}.capabilities{grid-template-columns:1fr 1fr}
+  .event{grid-template-columns:90px 1fr}.event-tag{display:none}
+}
+@media(max-width:560px){
+  header{height:65px;padding:0 6vw}.hero{padding:110px 6vw 60px}.hero h1{font-size:22vw}
+  .section{padding:90px 6vw}.section-head{display:block}.section-intro{margin-top:25px}
+  .team,.capabilities{grid-template-columns:1fr}.member{min-height:390px}
+  .cap{min-height:200px}.event{grid-template-columns:1fr;gap:10px}.event-year{color:#777}
+  footer{display:block;line-height:2.2}
+}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-inner"><div class="loader-logo">DCRS</div><div class="loader-sub">Productions / Est. 2024</div><div class="loader-bar"><i></i></div></div></div>
+<div class="noise"></div>
+
+<header>
+  <a class="brand" href="#">DCRS<span>®</span></a>
+  <nav><a href="#story">Story</a><a href="#team">Team</a><a href="#craft">Craft</a><a href="#future">2027</a><a href="#contact">Contact</a></nav>
+  <button class="menu" aria-label="Menu">☰</button>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="kicker">Thrissur, Kerala — India / Four minds / One vision</div>
+    <h1>WE<br><em>MAKE</em><br>WHAT'S<br>NEXT.</h1>
+  </div>
+  <div class="hero-copy reveal">
+    <p>Four students. No studio. No big production house. Just talent, curiosity and the ambition to turn ideas into things people remember.</p>
+    <a class="pill" href="#story"><span class="dot"></span> Enter DCRS</a>
+  </div>
+  <div class="scroll">Scroll to explore ↓</div>
+</section>
+
+<div class="marquee"><div class="track">
+<span>DCRS <b>PRODUCTIONS</b> — BUILT FROM NOTHING — </span><span>DCRS <b>PRODUCTIONS</b> — BUILT FROM NOTHING — </span>
+</div></div>
+
+<section class="section" id="story">
+  <div class="section-head reveal">
+    <div class="section-number">01 / THE STORY</div>
+    <p class="section-intro">A small team with an unusually big appetite for making things. Music, film, photography, technology and design all live under one roof.</p>
+  </div>
+  <div class="story">
+    <div class="story-visual reveal"><img src="DCRS.jpg" alt="DCRS Productions logo" loading="lazy"></div>
+    <div class="story-copy reveal">
+      <h3>Started with nothing.<br>Built with everything.</h3>
+      <p>DCRS Productions began with four Class 12 students in Thrissur, Kerala who wanted a place where their talents could collide. Instead of waiting for the “right time,” they started now.</p>
+      <p>One writes and sings. One builds wild ideas with foam board and IoT. One turns moments into songs. One frames the story through cameras and edits. Different strengths. One team.</p>
+      <div class="big-stat">04<small>CREATORS. ONE CREATIVE ENGINE.</small></div><div class="founding-note">DCRS / SINCE 2024</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="team">
+  <div class="section-head reveal">
+    <div class="section-number">02 / THE FOUR</div>
+    <p class="section-intro">No hierarchy of talent. Every member brings a different superpower to the same creative universe.</p>
+  </div>
+  <div class="team">
+    <article class="member reveal"><div class="member-no">01</div><div><div class="avatar">01</div><h3>The Multi-Creator</h3><div class="role">Music / IoT / Photography</div><p>Produces and sings songs, explores IoT projects and has a sharp eye for photography. The kind of person who can jump from a circuit to a camera without missing a beat.</p></div></article>
+    <article class="member reveal"><div class="member-no">02</div><div><div class="avatar">02</div><h3>The Builder</h3><div class="role">Design / IoT / Mobile Tech</div><p>Turns foam board and Forex sheet into beautifully finished phone concepts, mixes creativity with IoT and has serious phone knowledge.</p></div></article>
+    <article class="member reveal"><div class="member-no">03</div><div><div class="avatar">03</div><h3>The Voice</h3><div class="role">Vocals / Performance</div><p>A dedicated singer who brings another sound and personality to the group. Every production needs a voice — this is one of DCRS’s.</p></div></article>
+    <article class="member reveal"><div class="member-no">04</div><div><div class="avatar">04</div><h3>The Visualist</h3><div class="role">Video / Shooting / Editing</div><p>Handles video shooting and editing, turning raw moments into a finished visual story that the whole team can be proud of.</p></div></article>
+  </div>
+</section>
+
+<section class="section" id="craft">
+  <div class="section-head reveal">
+    <div class="section-number">03 / WHAT WE MAKE</div>
+    <p class="section-intro">DCRS is intentionally hard to put in one box. That's the point.</p>
+  </div>
+  <div class="capabilities">
+    <div class="cap reveal"><div class="num">01</div><h3>Music</h3><p>Original songs, vocals, production and experiments with sound.</p></div>
+    <div class="cap reveal"><div class="num">02</div><h3>Film</h3><p>Stories built for the screen — from the first shot to the final edit.</p></div>
+    <div class="cap reveal"><div class="num">03</div><h3>Visuals</h3><p>Photography, video shooting, editing and visual direction.</p></div>
+    <div class="cap reveal"><div class="num">04</div><h3>IoT</h3><p>Curiosity becomes prototypes, experiments and useful little machines.</p></div>
+    <div class="cap reveal"><div class="num">05</div><h3>Design</h3><p>Hand-built concepts and objects with attention to the smallest finish.</p></div>
+    <div class="cap reveal"><div class="num">06</div><h3>Ideas</h3><p>The category that matters most: thoughts that haven't existed yet.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <div class="section-number">04 / THE ROADMAP</div>
+    <p class="section-intro">The future isn't a promise. It's a project list.</p>
+  </div>
+  <div class="timeline">
+    <div class="event reveal"><div class="event-year">2024</div><div><h3>It all started.</h3><p>DCRS Productions began with four ambitious students and the decision to start creating from nothing.</p></div><div class="event-tag">Founded</div></div>
+    <div class="event reveal"><div class="event-year">NOW / 2026</div><div><h3>Build the foundation</h3><p>Develop the team, sharpen every craft and create work worth showing.</p></div><div class="event-tag">In progress</div></div>
+    <div class="event reveal"><div class="event-year">NEXT</div><div><h3>More surprises</h3><p>Projects that are better experienced than explained.</p></div><div class="event-tag">Classified</div></div>
+    <div class="event reveal"><div class="event-year">2027</div><div><h3>The movie.</h3><p>A full movie is being planned for 2027. The story is still under wraps.</p></div><div class="event-tag">Coming soon</div></div>
+  </div>
+</section>
+
+<section class="section future" id="future">
+  <div class="section-head reveal">
+    <div class="section-number">05 / NEXT CHAPTER</div>
+    <p class="section-intro">Some details are deliberately missing. You'll have to come back.</p>
+  </div>
+  <div class="future-grid">
+    <div class="future-card reveal"><div>PROJECT / 01</div><h3>2027<br>FEATURE</h3><p>A movie planned by four students who decided “someday” wasn't good enough. Details will arrive when they're ready.</p></div>
+    <div class="future-card reveal"><div>PROJECT / 02</div><h3>???<br>SECRET</h3><p>There are more ideas in the pipeline. Some should stay secret until they become real.</p></div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="reveal">
+    <div class="kicker">06 / CONTACT DCRS</div>
+    <h2>LET'S<br><span>MAKE.</span></h2>
+    <p>Follow the journey, see what the four are building and catch the next release before the next surprise drops.</p>
+    <a class="contact" href="https://www.instagram.com/dcrs_productions/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+  </div>
+</section>
+</main>
+
+<footer><span>© 2024–2026 DCRS Productions</span><span>Thrissur, Kerala / India</span><a href="https://www.instagram.com/dcrs_productions/" target="_blank" rel="noopener noreferrer">@dcrs_productions ↗</a></footer>
+
+<script>
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').style.transform='translateY(-100%)',650));
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+let last=0;
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  document.querySelector('.hero h1').style.transform=`translateY(${Math.min(y*.07,45)}px)`;
+  document.querySelector('.story-visual').style.transform=`translateY(${Math.min(y*.018,18)}px)`;
+  last=y;
+},{passive:true});
+</script>
+</body>
+</html>
