@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,10 +14,6 @@
 >
 
 <style>
-
-/* =====================================================
-   ROOT
-===================================================== */
 
 :root{
   --ink:#111;
@@ -83,7 +80,6 @@ select{
 
 header{
   position:fixed;
-
   top:0;
   left:0;
   right:0;
@@ -170,6 +166,8 @@ nav a:hover:after{
   background:none;
 
   font-size:25px;
+
+  cursor:pointer;
 }
 
 
@@ -196,9 +194,6 @@ nav a:hover:after{
   overflow:hidden;
 }
 
-
-/* Giant lime shape */
-
 .hero:before{
 
   content:"";
@@ -219,11 +214,7 @@ nav a:hover:after{
   background:var(--accent);
 
   z-index:-1;
-
 }
-
-
-/* Little black circle */
 
 .hero:after{
 
@@ -251,9 +242,7 @@ nav a:hover:after{
   letter-spacing:.15em;
 
   transform:rotate(12deg);
-
 }
-
 
 .kicker{
 
@@ -265,7 +254,6 @@ nav a:hover:after{
 
   margin-bottom:24px;
 }
-
 
 .hero h1{
 
@@ -280,9 +268,7 @@ nav a:hover:after{
   max-width:1050px;
 
   font-weight:900;
-
 }
-
 
 .hero h1 em{
 
@@ -295,7 +281,6 @@ nav a:hover:after{
   color:transparent;
 }
 
-
 .hero-copy{
 
   max-width:450px;
@@ -304,7 +289,6 @@ nav a:hover:after{
 
   padding-bottom:15px;
 }
-
 
 .hero-copy p{
 
@@ -315,11 +299,9 @@ nav a:hover:after{
   margin:0 0 28px;
 }
 
-
 .hero-copy strong{
   font-weight:900;
 }
-
 
 .pill{
 
@@ -344,16 +326,13 @@ nav a:hover:after{
   transition:.3s;
 }
 
-
 .pill:hover{
 
   background:#111;
   color:#fff;
 
   transform:translateY(-3px);
-
 }
-
 
 .dot{
 
@@ -366,7 +345,6 @@ nav a:hover:after{
 
   display:inline-block;
 }
-
 
 .scroll{
 
@@ -402,7 +380,6 @@ nav a:hover:after{
   border-block:1px solid #111;
 }
 
-
 .track{
 
   display:inline-flex;
@@ -410,7 +387,6 @@ nav a:hover:after{
   animation:
     marquee 24s linear infinite;
 }
-
 
 .track span{
 
@@ -423,11 +399,9 @@ nav a:hover:after{
   padding:13px 25px;
 }
 
-
 .track b{
   color:var(--accent);
 }
-
 
 @keyframes marquee{
 
@@ -447,7 +421,6 @@ nav a:hover:after{
   padding:130px 5vw;
 }
 
-
 .section-head{
 
   display:flex;
@@ -465,28 +438,12 @@ nav a:hover:after{
   margin-bottom:70px;
 }
 
-
 .section-number{
 
   font-size:11px;
 
   letter-spacing:.15em;
 }
-
-
-.section-title{
-
-  font-size:clamp(48px,8vw,110px);
-
-  line-height:.85;
-
-  letter-spacing:-.08em;
-
-  margin:0;
-
-  max-width:900px;
-}
-
 
 .section-intro{
 
@@ -516,7 +473,6 @@ nav a:hover:after{
   border-left:1px solid var(--line);
 }
 
-
 .service{
 
   min-height:360px;
@@ -537,15 +493,12 @@ nav a:hover:after{
     transform .4s;
 }
 
-
 .service:hover{
 
   background:#111;
 
   color:#fff;
-
 }
-
 
 .service-number{
 
@@ -555,7 +508,6 @@ nav a:hover:after{
 
   color:#888;
 }
-
 
 .service-icon{
 
@@ -580,7 +532,6 @@ nav a:hover:after{
   transition:.4s;
 }
 
-
 .service:hover .service-icon{
 
   background:var(--accent);
@@ -590,9 +541,7 @@ nav a:hover:after{
   border-color:var(--accent);
 
   transform:rotate(12deg) scale(1.08);
-
 }
-
 
 .service h3{
 
@@ -603,9 +552,7 @@ nav a:hover:after{
   letter-spacing:-.08em;
 
   margin:105px 0 18px;
-
 }
-
 
 .service p{
 
@@ -620,11 +567,9 @@ nav a:hover:after{
   margin:0;
 }
 
-
 .service:hover p{
   color:#aaa;
 }
-
 
 .service-tag{
 
@@ -644,7 +589,7 @@ nav a:hover:after{
 
 
 /* =====================================================
-   ORDER MANIFESTO
+   MANIFESTO
 ===================================================== */
 
 .manifesto{
@@ -657,7 +602,6 @@ nav a:hover:after{
 
   overflow:hidden;
 }
-
 
 .manifesto:before{
 
@@ -677,9 +621,7 @@ nav a:hover:after{
   line-height:.7;
 
   color:#181818;
-
 }
-
 
 .manifesto-inner{
 
@@ -690,7 +632,6 @@ nav a:hover:after{
 
   margin:auto;
 }
-
 
 .manifesto h2{
 
@@ -703,12 +644,10 @@ nav a:hover:after{
   margin:0 0 45px;
 }
 
-
 .manifesto h2 span{
 
   color:var(--accent);
 }
-
 
 .manifesto-copy{
 
@@ -738,7 +677,6 @@ nav a:hover:after{
   margin-top:70px;
 }
 
-
 .process-item{
 
   padding:30px 20px 0;
@@ -748,11 +686,9 @@ nav a:hover:after{
   min-height:180px;
 }
 
-
 .process-item:last-child{
   border-right:0;
 }
-
 
 .process-num{
 
@@ -763,7 +699,6 @@ nav a:hover:after{
   letter-spacing:.15em;
 }
 
-
 .process h3{
 
   font-size:25px;
@@ -772,7 +707,6 @@ nav a:hover:after{
 
   margin:35px 0 10px;
 }
-
 
 .process p{
 
@@ -795,7 +729,6 @@ nav a:hover:after{
   padding:130px 5vw;
 }
 
-
 .order-layout{
 
   display:grid;
@@ -806,7 +739,6 @@ nav a:hover:after{
 
   align-items:start;
 }
-
 
 .order-title{
 
@@ -819,7 +751,6 @@ nav a:hover:after{
   margin:0 0 30px;
 }
 
-
 .order-title span{
 
   display:block;
@@ -828,7 +759,6 @@ nav a:hover:after{
 
   color:transparent;
 }
-
 
 .order-note{
 
@@ -840,7 +770,6 @@ nav a:hover:after{
 
   line-height:1.6;
 }
-
 
 .back{
 
@@ -867,23 +796,22 @@ nav a:hover:after{
   transition:.3s;
 }
 
-
 .back:hover{
 
   background:#111;
 
   color:#fff;
-
 }
 
 
-/* Form */
+/* =====================================================
+   FORM
+===================================================== */
 
 form{
 
   border-top:1px solid var(--line);
 }
-
 
 .form-row{
 
@@ -894,14 +822,12 @@ form{
   gap:20px;
 }
 
-
 .field{
 
   border-bottom:1px solid var(--line);
 
   padding:25px 0;
 }
-
 
 label{
 
@@ -917,7 +843,6 @@ label{
 
   color:#777;
 }
-
 
 input,
 select,
@@ -936,34 +861,27 @@ textarea{
   font-size:18px;
 
   padding:4px 0;
-
 }
-
 
 select{
 
   appearance:none;
 
   cursor:pointer;
-
 }
-
 
 textarea{
 
   min-height:150px;
 
   resize:vertical;
-
 }
-
 
 input::placeholder,
 textarea::placeholder{
 
   color:#aaa;
 }
-
 
 .submit-row{
 
@@ -977,7 +895,6 @@ textarea::placeholder{
 
   padding-top:25px;
 }
-
 
 .submit{
 
@@ -1002,7 +919,6 @@ textarea::placeholder{
   transition:.35s;
 }
 
-
 .submit:hover{
 
   background:var(--accent);
@@ -1012,6 +928,14 @@ textarea::placeholder{
   transform:translateY(-4px);
 }
 
+.submit:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+  transform:none;
+}
 
 .form-small{
 
@@ -1023,7 +947,6 @@ textarea::placeholder{
 
   max-width:220px;
 }
-
 
 .success{
 
@@ -1068,7 +991,6 @@ textarea::placeholder{
   gap:30px;
 }
 
-
 .contact-strip h2{
 
   font-size:clamp(45px,7vw,95px);
@@ -1080,7 +1002,6 @@ textarea::placeholder{
   margin:0;
 }
 
-
 .contact-strip p{
 
   max-width:350px;
@@ -1088,9 +1009,7 @@ textarea::placeholder{
   font-size:14px;
 
   line-height:1.5;
-
 }
-
 
 .contact-button{
 
@@ -1116,7 +1035,6 @@ textarea::placeholder{
 
   transition:.3s;
 }
-
 
 .contact-button:hover{
 
@@ -1153,7 +1071,6 @@ footer{
   color:#777;
 }
 
-
 footer strong{
   color:#111;
 }
@@ -1172,7 +1089,6 @@ footer strong{
   transition:
     1s cubic-bezier(.2,.8,.2,1);
 }
-
 
 .reveal.show{
 
@@ -1245,7 +1161,6 @@ footer strong{
 
     align-items:flex-start;
   }
-
 }
 
 
@@ -1364,6 +1279,7 @@ footer strong{
 }
 
 </style>
+
 </head>
 
 
@@ -1528,8 +1444,6 @@ footer strong{
   <div class="services">
 
 
-    <!-- VIDEO -->
-
     <article class="service reveal">
 
       <div class="service-number">
@@ -1557,8 +1471,6 @@ footer strong{
 
     </article>
 
-
-    <!-- SOUND -->
 
     <article class="service reveal">
 
@@ -1588,8 +1500,6 @@ footer strong{
     </article>
 
 
-    <!-- PRODUCT -->
-
     <article class="service reveal">
 
       <div class="service-number">
@@ -1617,8 +1527,6 @@ footer strong{
 
     </article>
 
-
-    <!-- ELECTRONICS -->
 
     <article class="service reveal">
 
@@ -1648,8 +1556,6 @@ footer strong{
     </article>
 
 
-    <!-- IOT -->
-
     <article class="service reveal">
 
       <div class="service-number">
@@ -1677,8 +1583,6 @@ footer strong{
 
     </article>
 
-
-    <!-- CUSTOM -->
 
     <article class="service reveal">
 
@@ -1879,10 +1783,6 @@ footer strong{
       </p>
 
 
-      <!-- IMPORTANT:
-           Goes back to your existing index.html
-      -->
-
       <a
         class="back"
         href="index.html"
@@ -1953,27 +1853,27 @@ footer strong{
               Choose a category
             </option>
 
-            <option>
+            <option value="Video Editing">
               Video Editing
             </option>
 
-            <option>
+            <option value="Sound Mixing">
               Sound Mixing
             </option>
 
-            <option>
+            <option value="Product / Phone Model">
               Product / Phone Model
             </option>
 
-            <option>
+            <option value="Electronics / Board">
               Electronics / Board
             </option>
 
-            <option>
+            <option value="IoT Project">
               IoT Project
             </option>
 
-            <option>
+            <option value="Custom Idea">
               Custom Idea
             </option>
 
@@ -1990,23 +1890,23 @@ footer strong{
 
           <select id="budget">
 
-            <option>
+            <option value="Just exploring">
               Just exploring
             </option>
 
-            <option>
+            <option value="Small project">
               Small project
             </option>
 
-            <option>
+            <option value="Medium project">
               Medium project
             </option>
 
-            <option>
+            <option value="Large / serious project">
               Large / serious project
             </option>
 
-            <option>
+            <option value="Not sure yet">
               Not sure yet
             </option>
 
@@ -2056,6 +1956,7 @@ footer strong{
         <div
           class="success"
           id="success"
+          role="status"
         >
 
           ✓ Order received.
@@ -2179,31 +2080,198 @@ document
 
 
 /* =====================================================
-   ORDER FORM
+   ORDER FORM → GOOGLE APPS SCRIPT
 ===================================================== */
+
+/*
+   THIS IS YOUR GOOGLE APPS SCRIPT WEB APP URL.
+*/
+
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbygscyuclURn2dEt6voxVn7kq2GdFbrKirprdfctiwNx1kOS3UFbPoglgCYCBf039VN/exec";
+
 
 const form =
   document.getElementById("orderForm");
 
 
+const success =
+  document.getElementById("success");
+
+
 form.addEventListener(
   "submit",
-  function(event){
+  async function(event){
 
     event.preventDefault();
 
-    document
-      .getElementById("success")
-      .style.display = "block";
 
-    form.reset();
+    const submitButton =
+      form.querySelector(".submit");
 
-    document
-      .getElementById("success")
-      .scrollIntoView({
+
+    /*
+       Collect the form information.
+    */
+
+    const data = {
+
+      name:
+        document
+          .getElementById("name")
+          .value
+          .trim(),
+
+      email:
+        document
+          .getElementById("email")
+          .value
+          .trim(),
+
+      service:
+        document
+          .getElementById("service")
+          .value,
+
+      budget:
+        document
+          .getElementById("budget")
+          .value,
+
+      message:
+        document
+          .getElementById("message")
+          .value
+          .trim()
+
+    };
+
+
+    /*
+       Change button while sending.
+    */
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+      "Sending...";
+
+
+    /*
+       Hide previous message.
+    */
+
+    success.style.display =
+      "none";
+
+
+    try{
+
+
+      /*
+         Send the order to Google Apps Script.
+
+         "no-cors" is used because GitHub Pages
+         and Google Apps Script are different domains.
+      */
+
+      await fetch(
+
+        SCRIPT_URL,
+
+        {
+
+          method:"POST",
+
+          mode:"no-cors",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:
+            JSON.stringify(data)
+
+        }
+
+      );
+
+
+      /*
+         Show success message.
+      */
+
+      success.style.display =
+        "block";
+
+      success.style.background =
+        "var(--accent)";
+
+      success.style.color =
+        "#111";
+
+      success.textContent =
+        "✓ ORDER SENT. DCRS-TECHNOLOGIES WILL GET BACK TO YOU.";
+
+
+      /*
+         Clear form.
+      */
+
+      form.reset();
+
+
+      /*
+         Scroll to confirmation.
+      */
+
+      success.scrollIntoView({
+
         behavior:"smooth",
+
         block:"center"
+
       });
+
+
+    }
+
+
+    catch(error){
+
+      console.error(
+        "Order submission error:",
+        error
+      );
+
+
+      success.style.display =
+        "block";
+
+      success.style.background =
+        "#ff3333";
+
+      success.style.color =
+        "#fff";
+
+      success.textContent =
+        "✕ SOMETHING WENT WRONG. PLEASE TRY AGAIN.";
+
+
+    }
+
+
+    /*
+       Restore button.
+    */
+
+    submitButton.disabled =
+      false;
+
+    submitButton.textContent =
+      "Send Order →";
+
 
   }
 );
@@ -2214,14 +2282,20 @@ form.addEventListener(
 ===================================================== */
 
 window.addEventListener(
+
   "scroll",
+
   function(){
 
     const y =
       window.scrollY;
 
+
     const hero =
-      document.querySelector(".hero h1");
+      document.querySelector(
+        ".hero h1"
+      );
+
 
     if(hero){
 
@@ -2231,9 +2305,11 @@ window.addEventListener(
     }
 
   },
+
   {
     passive:true
   }
+
 );
 
 </script>
@@ -2241,166 +2317,3 @@ window.addEventListener(
 
 </body>
 </html>
-<script>
-
-/* =====================================================
-   REVEAL ANIMATION
-===================================================== */
-
-const observer =
-  new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add("show");
-        }
-      });
-    },
-    {
-      threshold:.12
-    }
-  );
-
-document
-  .querySelectorAll(".reveal")
-  .forEach(el => observer.observe(el));
-
-
-/* =====================================================
-   ORDER FORM → GOOGLE APPS SCRIPT
-===================================================== */
-
-const form = document.getElementById("orderForm");
-
-const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbygscyuclURn2dEt6voxVn7kq2GdFbrKirprdfctiwNx1kOS3UFbPoglgCYCBf039VN/exec";
-
-
-form.addEventListener("submit", async function(event){
-
-  event.preventDefault();
-
-  const submitButton =
-    form.querySelector(".submit");
-
-  const success =
-    document.getElementById("success");
-
-
-  /* Get form values */
-
-  const data = {
-
-    name:
-      document.getElementById("name").value.trim(),
-
-    email:
-      document.getElementById("email").value.trim(),
-
-    service:
-      document.getElementById("service").value,
-
-    budget:
-      document.getElementById("budget").value,
-
-    message:
-      document.getElementById("message").value.trim()
-
-  };
-
-
-  /* Change button while sending */
-
-  submitButton.disabled = true;
-
-  submitButton.textContent =
-    "Sending...";
-
-
-  try {
-
-    await fetch(
-      SCRIPT_URL,
-      {
-        method:"POST",
-
-        mode:"no-cors",
-
-        headers:{
-          "Content-Type":"text/plain;charset=utf-8"
-        },
-
-        body:JSON.stringify(data)
-      }
-    );
-
-
-    /* Show success */
-
-    success.style.display = "block";
-
-    success.textContent =
-      "✓ ORDER SENT. DCRS-TECHNOLOGIES WILL GET BACK TO YOU.";
-
-    form.reset();
-
-    success.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-
-  } catch(error){
-
-    console.error(error);
-
-    success.style.display = "block";
-
-    success.style.background = "#ff4444";
-
-    success.style.color = "#fff";
-
-    success.textContent =
-      "✕ SOMETHING WENT WRONG. PLEASE TRY AGAIN.";
-
-  }
-
-
-  /* Restore button */
-
-  submitButton.disabled = false;
-
-  submitButton.textContent =
-    "Send Order →";
-
-});
-
-
-/* =====================================================
-   HERO PARALLAX
-===================================================== */
-
-window.addEventListener(
-  "scroll",
-  function(){
-
-    const y =
-      window.scrollY;
-
-    const hero =
-      document.querySelector(".hero h1");
-
-    if(hero){
-
-      hero.style.transform =
-        `translateY(${Math.min(y * .045,35)}px)`;
-
-    }
-
-  },
-  {
-    passive:true
-  }
-);
-
-</script>
