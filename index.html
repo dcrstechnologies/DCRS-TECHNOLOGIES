@@ -3,10 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DCRS Productions — Built From Nothing</title>
-<meta name="description" content="DCRS Productions — four young creators from Thrissur building music, films, photography, IoT, design and stories from the ground up.">
+
+<meta
+  name="description"
+  content="DCRS Productions — four young creators from Thrissur building music, films, photography, IoT, design and stories from the ground up."
+>
 
 <style>
+
 :root{
   --ink:#111;
   --muted:#666;
@@ -47,9 +53,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    LOADER
-========================= */
+===================================================== */
 
 #loader{
   position:fixed;
@@ -57,46 +63,249 @@ button{
   background:#101010;
   color:#fff;
   z-index:10000;
+
   display:grid;
   place-items:center;
-  transition:.8s cubic-bezier(.77,0,.18,1);
+
+  overflow:hidden;
+
+  transition:
+    transform 1.15s cubic-bezier(.77,0,.18,1);
 }
+
+
+/* Glow */
+
+.loader-glow{
+  position:absolute;
+
+  width:45vw;
+  height:45vw;
+
+  min-width:280px;
+  min-height:280px;
+
+  border-radius:50%;
+
+  background:var(--accent);
+
+  filter:blur(130px);
+
+  opacity:.055;
+
+  animation:
+    loaderGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes loaderGlow{
+
+  from{
+    transform:scale(.75);
+    opacity:.035;
+  }
+
+  to{
+    transform:scale(1.15);
+    opacity:.09;
+  }
+
+}
+
+
+/* Loader content */
 
 .loader-inner{
+  position:relative;
+  z-index:2;
+
+  width:min(85vw,700px);
+
   text-align:center;
+
+  animation:
+    loaderEnter 1.2s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-.loader-logo{
-  font-size:clamp(50px,10vw,140px);
-  font-weight:900;
-  letter-spacing:-.09em;
-  line-height:.8;
+
+/* Logo */
+
+.loader-logo-wrap{
+  position:relative;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
 }
+
+
+.loader-logo-img{
+  display:block;
+
+  width:min(65vw,500px);
+
+  height:auto;
+
+  max-height:190px;
+
+  object-fit:contain;
+
+  opacity:0;
+
+  transform:
+    scale(.65)
+    translateY(35px);
+
+  animation:
+    logoReveal 1.4s cubic-bezier(.16,1,.3,1) .15s forwards;
+}
+
+
+@keyframes logoReveal{
+
+  0%{
+    opacity:0;
+
+    transform:
+      scale(.65)
+      translateY(35px);
+  }
+
+  45%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:1;
+
+    transform:
+      scale(1)
+      translateY(0);
+  }
+
+}
+
+
+/* Logo light sweep */
+
+.loader-logo-wrap::after{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-130%;
+
+  width:65%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.9),
+      transparent
+    );
+
+  transform:skewX(-20deg);
+
+  animation:
+    logoSweep 1.1s cubic-bezier(.77,0,.18,1) .65s forwards;
+}
+
+
+@keyframes logoSweep{
+
+  from{
+    left:-130%;
+  }
+
+  to{
+    left:150%;
+  }
+
+}
+
+
+/* Subtitle */
 
 .loader-sub{
-  margin-top:24px;
-  letter-spacing:.25em;
-  font-size:11px;
+  margin-top:25px;
+
+  font-size:10px;
+
+  letter-spacing:.3em;
+
   text-transform:uppercase;
-  color:#aaa;
+
+  color:#888;
+
+  opacity:0;
+
+  animation:
+    loaderSub 1s ease .85s forwards;
 }
+
+
+@keyframes loaderSub{
+
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+
+/* Loading bar */
 
 .loader-bar{
   width:180px;
   height:2px;
+
   background:#333;
+
   margin:28px auto 0;
+
   overflow:hidden;
+
+  opacity:0;
+
+  animation:
+    loaderBarIn .5s ease .9s forwards;
 }
+
 
 .loader-bar i{
   display:block;
+
+  width:0;
   height:100%;
+
   background:var(--accent);
-  animation:load 1.4s ease forwards;
+
+  animation:
+    load 1.45s cubic-bezier(.77,0,.18,1) 1s forwards;
 }
 
+
+@keyframes loaderBarIn{
+
+  to{
+    opacity:1;
+  }
+
+}
+
+
 @keyframes load{
+
   from{
     width:0;
   }
@@ -104,12 +313,74 @@ button{
   to{
     width:100%;
   }
+
 }
 
 
-/* =========================
+/* Loader entrance */
+
+@keyframes loaderEnter{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+
+/* Loader exit */
+
+#loader.exit{
+  transform:translateY(-100%);
+}
+
+
+/* Lime wipe */
+
+#loader.exit::after{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:var(--accent);
+
+  transform:translateY(100%);
+
+  z-index:50;
+
+  animation:
+    loaderFlash .9s cubic-bezier(.77,0,.18,1) forwards;
+}
+
+
+@keyframes loaderFlash{
+
+  0%{
+    transform:translateY(100%);
+  }
+
+  25%{
+    transform:translateY(0);
+  }
+
+  100%{
+    transform:translateY(-100%);
+  }
+
+}
+
+
+/* =====================================================
    NOISE
-========================= */
+===================================================== */
 
 .noise{
   position:fixed;
@@ -117,27 +388,37 @@ button{
   pointer-events:none;
   z-index:999;
   opacity:.055;
+
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
 
-/* =========================
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 header{
   position:fixed;
+
   top:0;
   left:0;
   right:0;
+
   height:78px;
+
   display:flex;
+
   align-items:center;
   justify-content:space-between;
+
   padding:0 5vw;
+
   z-index:900;
+
   background:rgba(247,247,244,.75);
+
   backdrop-filter:blur(16px);
+
   border-bottom:1px solid rgba(0,0,0,.08);
 }
 
@@ -154,8 +435,11 @@ header{
 nav{
   display:flex;
   gap:30px;
+
   font-size:12px;
+
   text-transform:uppercase;
+
   letter-spacing:.12em;
 }
 
@@ -165,12 +449,17 @@ nav a{
 
 nav a:after{
   content:"";
+
   position:absolute;
+
   left:0;
   bottom:-7px;
+
   width:0;
   height:1px;
+
   background:#111;
+
   transition:.3s;
 }
 
@@ -180,127 +469,184 @@ nav a:hover:after{
 
 .menu{
   display:none;
+
   border:0;
+
   background:none;
+
   font-size:25px;
 }
 
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
   min-height:100vh;
+
   padding:150px 5vw 60px;
+
   display:grid;
+
   grid-template-columns:1.25fr .75fr;
+
   gap:4vw;
+
   align-items:end;
+
   position:relative;
+
   overflow:hidden;
 }
 
 .hero:before{
   content:"";
+
   position:absolute;
+
   width:55vw;
   height:55vw;
+
   border-radius:50%;
+
   right:-20vw;
   top:-15vw;
+
   background:var(--accent);
+
   filter:blur(1px);
+
   z-index:-1;
 }
 
 .kicker{
   font-size:12px;
+
   letter-spacing:.18em;
+
   text-transform:uppercase;
+
   margin-bottom:24px;
 }
 
 .hero h1{
   font-size:clamp(74px,13vw,190px);
+
   line-height:.79;
+
   letter-spacing:-.095em;
+
   margin:0;
+
   max-width:1050px;
+
   font-weight:900;
 }
 
 .hero h1 em{
   font-style:normal;
+
   display:block;
+
   -webkit-text-stroke:2px #111;
+
   color:transparent;
 }
 
 .hero-copy{
   max-width:450px;
+
   margin-left:auto;
+
   padding-bottom:15px;
 }
 
 .hero-copy p{
   font-size:19px;
+
   line-height:1.35;
+
   margin:0 0 28px;
 }
 
 .pill{
   display:inline-flex;
+
   align-items:center;
+
   gap:10px;
+
   border:1px solid #111;
+
   border-radius:99px;
+
   padding:13px 18px;
+
   font-size:11px;
+
   text-transform:uppercase;
+
   letter-spacing:.12em;
 }
 
 .dot{
   width:7px;
   height:7px;
+
   background:var(--accent);
+
   border-radius:50%;
+
   display:inline-block;
 }
 
 .scroll{
   position:absolute;
+
   bottom:28px;
   left:5vw;
+
   font-size:10px;
+
   letter-spacing:.18em;
+
   text-transform:uppercase;
+
   writing-mode:vertical-rl;
 }
 
 
-/* =========================
+/* =====================================================
    MARQUEE
-========================= */
+===================================================== */
 
 .marquee{
   background:#111;
+
   color:#fff;
+
   overflow:hidden;
+
   white-space:nowrap;
+
   border-block:1px solid #111;
 }
 
 .track{
   display:inline-flex;
-  animation:marquee 22s linear infinite;
+
+  animation:
+    marquee 22s linear infinite;
 }
 
 .track span{
   font-size:clamp(34px,5vw,72px);
+
   font-weight:900;
+
   letter-spacing:-.06em;
+
   padding:13px 25px;
 }
 
@@ -309,15 +655,17 @@ nav a:hover:after{
 }
 
 @keyframes marquee{
+
   to{
     transform:translateX(-50%);
   }
+
 }
 
 
-/* =========================
+/* =====================================================
    SECTIONS
-========================= */
+===================================================== */
 
 .section{
   padding:130px 5vw;
@@ -325,60 +673,86 @@ nav a:hover:after{
 
 .section-head{
   display:flex;
+
   justify-content:space-between;
+
   gap:30px;
+
   align-items:flex-start;
+
   border-top:1px solid var(--line);
+
   padding-top:22px;
+
   margin-bottom:70px;
 }
 
 .section-number{
   font-size:11px;
+
   letter-spacing:.15em;
 }
 
 .section-title{
   font-size:clamp(48px,8vw,110px);
+
   line-height:.85;
+
   letter-spacing:-.08em;
+
   margin:0;
+
   max-width:900px;
 }
 
 .section-intro{
   max-width:330px;
+
   font-size:16px;
+
   line-height:1.5;
+
   color:var(--muted);
 }
 
 
-/* =========================
+/* =====================================================
    STORY
-========================= */
+===================================================== */
 
 .story{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:7vw;
+
   align-items:center;
 }
 
 .story-visual{
   aspect-ratio:1/1;
+
   position:relative;
+
   background:#171717;
+
   overflow:hidden;
+
   border:1px solid #222;
 }
 
 .story-visual img{
   width:100%;
   height:100%;
+
   display:block;
+
   object-fit:cover;
-  transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
+
+  transition:
+    transform 1.2s cubic-bezier(.2,.8,.2,1);
+
   filter:saturate(1.05) contrast(1.05);
 }
 
@@ -388,107 +762,161 @@ nav a:hover:after{
 
 .story-visual:before{
   content:"";
+
   position:absolute;
+
   inset:8%;
+
   border:1px solid #444;
+
   display:grid;
+
   place-items:center;
+
   color:#eee;
+
   font-size:clamp(70px,12vw,160px);
+
   font-weight:900;
+
   letter-spacing:-.12em;
 }
 
 .story-visual:after{
   content:"FROM NOTHING / TO SOMETHING";
+
   position:absolute;
+
   bottom:25px;
   left:25px;
+
   color:#aaa;
+
   font-size:10px;
+
   letter-spacing:.2em;
 }
 
 .story-copy h3{
   font-size:clamp(34px,5vw,70px);
+
   line-height:.9;
+
   letter-spacing:-.07em;
+
   margin:0 0 25px;
 }
 
 .story-copy p{
   font-size:18px;
+
   line-height:1.55;
+
   color:#555;
+
   max-width:560px;
 }
 
 .big-stat{
   font-size:clamp(90px,15vw,210px);
+
   font-weight:900;
+
   letter-spacing:-.1em;
+
   line-height:.7;
+
   margin:60px 0 0;
 }
 
 .big-stat small{
   font-size:12px;
+
   letter-spacing:.15em;
+
   display:block;
+
   line-height:1.2;
+
   margin-left:10px;
+
   color:#777;
 }
 
 .founding-note{
   display:inline-block;
+
   margin-top:25px;
+
   padding:9px 13px;
+
   border:1px solid var(--line);
+
   font-size:10px;
+
   letter-spacing:.18em;
+
   text-transform:uppercase;
 }
 
 
-/* =========================
+/* =====================================================
    TEAM
-========================= */
+===================================================== */
 
 .team{
   display:grid;
+
   grid-template-columns:repeat(4,1fr);
+
   gap:12px;
 }
 
 .member{
   min-height:430px;
+
   border:1px solid var(--line);
+
   padding:25px;
+
   display:flex;
+
   flex-direction:column;
+
   justify-content:space-between;
+
   transition:.5s cubic-bezier(.2,.8,.2,1);
+
   position:relative;
+
   overflow:hidden;
+
   background:#f7f7f4;
 }
 
 .member:hover{
   transform:translateY(-12px);
+
   background:#111;
+
   color:#fff;
 }
 
 .member:before{
   content:"";
+
   position:absolute;
+
   width:160px;
   height:160px;
+
   border-radius:50%;
+
   background:var(--accent);
+
   right:-80px;
   top:-80px;
+
   transition:.5s;
 }
 
@@ -499,43 +927,51 @@ nav a:hover:after{
 
 .member-no{
   font-size:11px;
+
   letter-spacing:.2em;
+
   position:relative;
 }
 
 
-/* =========================
-   FIXED TEAM IMAGE SYSTEM
-========================= */
+/* Team images */
 
 .avatar{
   width:100%;
+
   height:220px;
+
   border:1px solid var(--line);
+
   display:grid;
+
   place-items:center;
+
   font-size:70px;
+
   font-weight:900;
+
   letter-spacing:-.1em;
+
   position:relative;
+
   overflow:hidden;
+
   background:#171717;
 }
 
 .avatar img{
   width:100%;
   height:100%;
+
   display:block;
 
-  /*
-    IMPORTANT:
-    Keep the top of portrait photos visible.
-    This prevents faces from being cropped on phones.
-  */
   object-fit:cover;
+
   object-position:center top;
 
-  transition:transform .7s cubic-bezier(.2,.8,.2,1);
+  transition:
+    transform .7s cubic-bezier(.2,.8,.2,1);
 }
 
 .member:hover .avatar img{
@@ -548,16 +984,23 @@ nav a:hover:after{
 
 .member h3{
   font-size:27px;
+
   letter-spacing:-.06em;
+
   margin:20px 0 8px;
+
   position:relative;
 }
 
 .role{
   font-size:10px;
+
   text-transform:uppercase;
+
   letter-spacing:.15em;
+
   color:#777;
+
   position:relative;
 }
 
@@ -567,8 +1010,11 @@ nav a:hover:after{
 
 .member p{
   font-size:13px;
+
   line-height:1.5;
+
   color:#666;
+
   position:relative;
 }
 
@@ -577,45 +1023,59 @@ nav a:hover:after{
 }
 
 
-/* =========================
+/* =====================================================
    CAPABILITIES
-========================= */
+===================================================== */
 
 .capabilities{
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   border-top:1px solid var(--line);
+
   border-left:1px solid var(--line);
 }
 
 .cap{
   padding:40px;
+
   border-right:1px solid var(--line);
+
   border-bottom:1px solid var(--line);
+
   min-height:230px;
+
   transition:.35s;
 }
 
 .cap:hover{
   background:#111;
+
   color:#fff;
 }
 
 .cap .num{
   font-size:11px;
+
   color:#999;
 }
 
 .cap h3{
   font-size:34px;
+
   letter-spacing:-.06em;
+
   margin:55px 0 10px;
 }
 
 .cap p{
   font-size:13px;
+
   color:#777;
+
   line-height:1.45;
+
   margin:0;
 }
 
@@ -624,74 +1084,99 @@ nav a:hover:after{
 }
 
 
-/* =========================
+/* =====================================================
    TIMELINE
-========================= */
+===================================================== */
 
 .timeline{
   position:relative;
+
   border-top:1px solid var(--line);
 }
 
 .event{
   display:grid;
+
   grid-template-columns:150px 1fr 160px;
+
   gap:30px;
+
   padding:35px 0;
+
   border-bottom:1px solid var(--line);
+
   align-items:center;
 }
 
 .event-year{
   font-size:12px;
+
   letter-spacing:.15em;
 }
 
 .event h3{
   font-size:clamp(28px,4vw,52px);
+
   letter-spacing:-.07em;
+
   margin:0;
 }
 
 .event p{
   color:#777;
+
   margin:8px 0 0;
+
   font-size:14px;
 }
 
 .event-tag{
   text-align:right;
+
   font-size:10px;
+
   text-transform:uppercase;
+
   letter-spacing:.15em;
 }
 
 
-/* =========================
+/* =====================================================
    FUTURE
-========================= */
+===================================================== */
 
 .future{
   background:#111;
+
   color:#fff;
+
   position:relative;
+
   overflow:hidden;
 }
 
 .future:before{
   content:"2027";
+
   position:absolute;
+
   right:-4vw;
   top:-7vw;
+
   font-size:32vw;
+
   font-weight:900;
+
   letter-spacing:-.12em;
+
   color:#181818;
+
   line-height:1;
 }
 
 .future .section-head{
   border-color:#333;
+
   position:relative;
 }
 
@@ -705,112 +1190,157 @@ nav a:hover:after{
 
 .future-grid{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:7vw;
+
   position:relative;
 }
 
 .future-card{
   border:1px solid #333;
+
   padding:45px;
+
   min-height:340px;
 }
 
 .future-card h3{
   font-size:60px;
+
   letter-spacing:-.08em;
+
   line-height:.85;
+
   margin:90px 0 15px;
 }
 
 .future-card p{
   color:#888;
+
   max-width:450px;
+
   line-height:1.5;
 }
 
 
-/* =========================
+/* =====================================================
    CONTACT
-========================= */
+===================================================== */
 
 .cta{
   text-align:center;
+
   padding:170px 5vw;
 }
 
 .cta h2{
   font-size:clamp(70px,14vw,200px);
+
   line-height:.78;
+
   letter-spacing:-.1em;
+
   margin:0;
 }
 
 .cta h2 span{
   display:block;
+
   -webkit-text-stroke:2px #111;
+
   color:transparent;
 }
 
 .cta p{
   max-width:500px;
+
   margin:40px auto 28px;
+
   color:#666;
+
   line-height:1.5;
 }
 
 .contact{
   display:inline-flex;
+
   align-items:center;
+
   gap:12px;
+
   background:#111;
+
   color:#fff;
+
   padding:18px 24px;
+
   border-radius:99px;
+
   font-size:12px;
+
   letter-spacing:.1em;
+
   text-transform:uppercase;
+
   transition:.3s;
 }
 
 .contact:hover{
   background:var(--accent);
+
   color:#111;
+
   transform:scale(1.04);
 }
 
 .contact-row{
   display:flex;
+
   justify-content:center;
+
   align-items:center;
+
   gap:10px;
+
   flex-wrap:wrap;
 }
 
 .contact.secondary{
   background:transparent;
+
   color:#111;
+
   border:1px solid #111;
 }
 
 .contact.secondary:hover{
   background:var(--accent);
+
   border-color:var(--accent);
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
   padding:25px 5vw;
+
   border-top:1px solid var(--line);
+
   display:flex;
+
   justify-content:space-between;
+
   font-size:10px;
+
   letter-spacing:.12em;
+
   text-transform:uppercase;
+
   color:#777;
 }
 
@@ -819,25 +1349,29 @@ footer a{
 }
 
 
-/* =========================
-   REVEAL ANIMATION
-========================= */
+/* =====================================================
+   REVEAL
+===================================================== */
 
 .reveal{
   opacity:0;
+
   transform:translateY(50px);
-  transition:1s cubic-bezier(.2,.8,.2,1);
+
+  transition:
+    1s cubic-bezier(.2,.8,.2,1);
 }
 
 .reveal.show{
   opacity:1;
+
   transform:none;
 }
 
 
-/* =========================
+/* =====================================================
    TABLET
-========================= */
+===================================================== */
 
 @media(max-width:900px){
 
@@ -851,6 +1385,7 @@ footer a{
 
   .hero{
     grid-template-columns:1fr;
+
     padding-top:130px;
   }
 
@@ -876,9 +1411,6 @@ footer a{
     grid-template-columns:1fr 1fr;
   }
 
-  /*
-    More vertical space for portrait photos on tablets.
-  */
   .avatar{
     height:250px;
   }
@@ -894,17 +1426,19 @@ footer a{
   .event-tag{
     display:none;
   }
+
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:560px){
 
   header{
     height:65px;
+
     padding:0 6vw;
   }
 
@@ -945,22 +1479,22 @@ footer a{
     min-height:390px;
   }
 
-  /*
-    MOBILE IMAGE FIX
-    The image box is now taller so portrait photos
-    have enough room for the face and upper body.
-  */
   .avatar{
     width:100%;
+
     height:auto;
+
     aspect-ratio:4 / 3;
+
     min-height:250px;
   }
 
   .avatar img{
     width:100%;
     height:100%;
+
     object-fit:cover;
+
     object-position:center top;
   }
 
@@ -970,6 +1504,7 @@ footer a{
 
   .event{
     grid-template-columns:1fr;
+
     gap:10px;
   }
 
@@ -979,11 +1514,13 @@ footer a{
 
   .future-card{
     padding:30px;
+
     min-height:300px;
   }
 
   .future-card h3{
     font-size:48px;
+
     margin:70px 0 15px;
   }
 
@@ -997,11 +1534,13 @@ footer a{
 
   .contact{
     width:100%;
+
     justify-content:center;
   }
 
   footer{
     display:block;
+
     line-height:2.2;
   }
 
@@ -1009,17 +1548,37 @@ footer a{
   footer a{
     display:block;
   }
+
+  /* Mobile loader */
+
+  .loader-logo-img{
+    width:78vw;
+
+    max-height:130px;
+  }
+
+  .loader-sub{
+    font-size:8px;
+
+    letter-spacing:.25em;
+  }
+
+  .loader-bar{
+    width:140px;
+  }
+
 }
 
 
-/* =========================
+/* =====================================================
    EXTRA SMALL PHONES
-========================= */
+===================================================== */
 
 @media(max-width:380px){
 
   .avatar{
     aspect-ratio:1 / 1;
+
     min-height:240px;
   }
 
@@ -1042,33 +1601,55 @@ footer a{
   .section{
     padding:75px 6vw;
   }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      LOADER
-========================= -->
+===================================================== -->
 
 <div id="loader">
+
+  <div class="loader-glow"></div>
+
   <div class="loader-inner">
-    <div class="loader-logo">DCRS</div>
-    <div class="loader-sub">Productions / Est. 2024</div>
+
+    <div class="loader-logo-wrap">
+
+      <img
+        src="HEADER.png"
+        alt="DCRS Productions"
+        class="loader-logo-img"
+      >
+
+    </div>
+
+    <div class="loader-sub">
+      PRODUCTIONS / EST. 2024
+    </div>
+
     <div class="loader-bar">
       <i></i>
     </div>
+
   </div>
+
 </div>
+
 
 <div class="noise"></div>
 
 
-<!-- =========================
+<!-- =====================================================
      HEADER
-========================= -->
+===================================================== -->
 
 <header>
 
@@ -1077,14 +1658,33 @@ footer a{
   </a>
 
   <nav>
-    <a href="#story">Story</a>
-    <a href="#team">Team</a>
-    <a href="#craft">Craft</a>
-    <a href="#future">2027</a>
-    <a href="#contact">Contact</a>
+
+    <a href="#story">
+      Story
+    </a>
+
+    <a href="#team">
+      Team
+    </a>
+
+    <a href="#craft">
+      Craft
+    </a>
+
+    <a href="#future">
+      2027
+    </a>
+
+    <a href="#contact">
+      Contact
+    </a>
+
   </nav>
 
-  <button class="menu" aria-label="Menu">
+  <button
+    class="menu"
+    aria-label="Menu"
+  >
     ☰
   </button>
 
@@ -1093,9 +1693,10 @@ footer a{
 
 <main>
 
-<!-- =========================
+
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <section class="hero">
 
@@ -1106,13 +1707,19 @@ footer a{
     </div>
 
     <h1>
+
       WE<br>
+
       <em>MAKE</em><br>
+
       WHAT'S<br>
+
       NEXT.
+
     </h1>
 
   </div>
+
 
   <div class="hero-copy reveal">
 
@@ -1123,11 +1730,15 @@ footer a{
     </p>
 
     <a class="pill" href="#story">
+
       <span class="dot"></span>
+
       Enter DCRS
+
     </a>
 
   </div>
+
 
   <div class="scroll">
     Scroll to explore ↓
@@ -1136,9 +1747,9 @@ footer a{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      MARQUEE
-========================= -->
+===================================================== -->
 
 <div class="marquee">
 
@@ -1157,9 +1768,9 @@ footer a{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      STORY
-========================= -->
+===================================================== -->
 
 <section class="section" id="story">
 
@@ -1179,6 +1790,7 @@ footer a{
 
   <div class="story">
 
+
     <div class="story-visual reveal">
 
       <img
@@ -1197,14 +1809,18 @@ footer a{
         Built with everything.
       </h3>
 
+
       <p>
         DCRS Productions began with four Class 12 students in Thrissur,
         Kerala who wanted a place where their talents could collide.
         Instead of waiting for the “right time,” they started now.
       </p>
 
+
       <p>
+
         The Creative Team of DCRS<br>
+
         DCRS is led by four creative minds—Christy F. Vattakuzhy,
         Daniel Christo KJ, Sree Nandan, and Abinel CJ—each bringing
         a distinct area of expertise. Christy contributes across music,
@@ -1214,12 +1830,20 @@ footer a{
         and design, and Abinel CJ adds creative voice through lyrics,
         music, and positive energy. Together, they form the creative
         backbone of DCRS.
+
       </p>
 
+
       <div class="big-stat">
+
         04
-        <small>CREATORS. ONE CREATIVE ENGINE.</small>
+
+        <small>
+          CREATORS. ONE CREATIVE ENGINE.
+        </small>
+
       </div>
+
 
       <div class="founding-note">
         DCRS / SINCE 2024
@@ -1232,9 +1856,9 @@ footer a{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      TEAM
-========================= -->
+===================================================== -->
 
 <section class="section" id="team">
 
@@ -1411,8 +2035,8 @@ footer a{
           responsible for identifying problems, finding effective
           solutions, and handling the essential behind-the-scenes
           work. With a sharp creative vision and a problem-solving
-          mindset, he turns ideas into action and quietly keeps the
-          entire creative process moving forward.
+          mindset, he turns ideas into action and quietly keeps
+          the entire creative process moving forward.
         </p>
 
       </div>
@@ -1424,9 +2048,9 @@ footer a{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      CRAFT
-========================= -->
+===================================================== -->
 
 <section class="section" id="craft">
 
@@ -1447,51 +2071,104 @@ footer a{
   <div class="capabilities">
 
     <div class="cap reveal">
-      <div class="num">01</div>
-      <h3>Music</h3>
+
+      <div class="num">
+        01
+      </div>
+
+      <h3>
+        Music
+      </h3>
+
       <p>
         Original songs, vocals, production and experiments with sound.
       </p>
+
     </div>
 
+
     <div class="cap reveal">
-      <div class="num">02</div>
-      <h3>Film</h3>
+
+      <div class="num">
+        02
+      </div>
+
+      <h3>
+        Film
+      </h3>
+
       <p>
         Stories built for the screen — from the first shot to the final edit.
       </p>
+
     </div>
 
+
     <div class="cap reveal">
-      <div class="num">03</div>
-      <h3>Visuals</h3>
+
+      <div class="num">
+        03
+      </div>
+
+      <h3>
+        Visuals
+      </h3>
+
       <p>
         Photography, video shooting, editing and visual direction.
       </p>
+
     </div>
 
+
     <div class="cap reveal">
-      <div class="num">04</div>
-      <h3>IoT</h3>
+
+      <div class="num">
+        04
+      </div>
+
+      <h3>
+        IoT
+      </h3>
+
       <p>
         Curiosity becomes prototypes, experiments and useful little machines.
       </p>
+
     </div>
 
+
     <div class="cap reveal">
-      <div class="num">05</div>
-      <h3>Design</h3>
+
+      <div class="num">
+        05
+      </div>
+
+      <h3>
+        Design
+      </h3>
+
       <p>
         Hand-built concepts and objects with attention to the smallest finish.
       </p>
+
     </div>
 
+
     <div class="cap reveal">
-      <div class="num">06</div>
-      <h3>Ideas</h3>
+
+      <div class="num">
+        06
+      </div>
+
+      <h3>
+        Ideas
+      </h3>
+
       <p>
         The category that matters most: thoughts that haven't existed yet.
       </p>
+
     </div>
 
   </div>
@@ -1499,9 +2176,9 @@ footer a{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      ROADMAP
-========================= -->
+===================================================== -->
 
 <section class="section">
 
@@ -1628,9 +2305,9 @@ footer a{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      FUTURE
-========================= -->
+===================================================== -->
 
 <section class="section future" id="future">
 
@@ -1694,9 +2371,9 @@ footer a{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      CONTACT
-========================= -->
+===================================================== -->
 
 <section class="cta" id="contact">
 
@@ -1728,12 +2405,14 @@ footer a{
         Instagram ↗
       </a>
 
+
       <a
         class="contact secondary"
         href="mailto:dcrstechnologies@gmail.com"
       >
         Email ↗
       </a>
+
 
       <a
         class="contact secondary"
@@ -1751,9 +2430,9 @@ footer a{
 </main>
 
 
-<!-- =========================
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
@@ -1784,50 +2463,59 @@ footer a{
 </footer>
 
 
-<!-- =========================
+<!-- =====================================================
      JAVASCRIPT
-========================= -->
+===================================================== -->
 
 <script>
 
-/* =========================
+
+/* =====================================================
    LOADER
-========================= */
+===================================================== */
 
 window.addEventListener('load',()=>{
 
+  const loader =
+    document.getElementById('loader');
+
+
   setTimeout(()=>{
 
-    document.getElementById('loader').style.transform =
-      'translateY(-100%)';
+    loader.classList.add('exit');
 
-  },650);
+  },2300);
 
 });
 
 
-/* =========================
+
+/* =====================================================
    SCROLL REVEAL
-========================= */
+===================================================== */
 
-const observer = new IntersectionObserver(
-  entries => {
+const observer =
+  new IntersectionObserver(
 
-    entries.forEach(entry => {
+    entries => {
 
-      if(entry.isIntersecting){
+      entries.forEach(entry => {
 
-        entry.target.classList.add('show');
+        if(entry.isIntersecting){
 
-      }
+          entry.target.classList.add('show');
 
-    });
+        }
 
-  },
-  {
-    threshold:.12
-  }
-);
+      });
+
+    },
+
+    {
+      threshold:.12
+    }
+
+  );
 
 
 document
@@ -1835,16 +2523,20 @@ document
   .forEach(el => observer.observe(el));
 
 
-/* =========================
+
+/* =====================================================
    HERO PARALLAX
-========================= */
+===================================================== */
 
 window.addEventListener('scroll',()=>{
 
-  const y = window.scrollY;
+  const y =
+    window.scrollY;
+
 
   const heroTitle =
     document.querySelector('.hero h1');
+
 
   const storyVisual =
     document.querySelector('.story-visual');
@@ -1865,11 +2557,14 @@ window.addEventListener('scroll',()=>{
 
   }
 
+
 },{
   passive:true
 });
 
+
 </script>
+
 
 </body>
 </html>
